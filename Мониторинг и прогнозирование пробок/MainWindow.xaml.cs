@@ -24,5 +24,10 @@ namespace Мониторинг_и_прогнозирование_пробок
             var db = new DBContext();
             db.Database.EnsureCreated();
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
