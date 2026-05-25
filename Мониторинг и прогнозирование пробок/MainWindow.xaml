@@ -5,23 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Мониторинг_и_прогнозирование_пробок"
         mc:Ignorable="d"
-        Title="Мониторинг и прогнозирование пробок" Height="600" Width="950">
+        Title="Мониторинг и прогнозирование пробок" Height="610" Width="950">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0"
-                 Text="Мониторинг и прогнозирование пробок" 
-                 FontStyle="Normal"
-                 FontSize="20"
-                 FontWeight="Bold"
-                 TextAlignment="Center"
-                 Foreground="#FFFFFF"
-                 Padding="15"
-                 Margin="10"
-                 Background="#8B2C2C"/>
+        <StackPanel Orientation="Vertical">
+            <TextBlock Grid.Row="0"
+            Text="Мониторинг и прогнозирование пробок" 
+            FontStyle="Normal"
+            FontSize="20"
+            FontWeight="Bold"
+            TextAlignment="Center"
+            Foreground="#FFFFFF"
+            Padding="15"
+            Margin="10"
+            Background="#8B2C2C"/>
+            <Image Source="/images/vecteezy_3d-model-icon-car-illustration_17339072.png" Width="35" Height="35" HorizontalAlignment="Right"
+                   Margin="0,-10,10,0"/>
+        </StackPanel>
+
         <TabControl Grid.Row="1">
             <TabItem Header="Историческая скорость"  Background="#8B2C2C">
                 <Grid Margin ="5">
@@ -31,7 +36,8 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Grid.Column="0" Margin="5" Background="#EBEBEB">
-                        <ListBox x:Name="lstskrorost" Height="380" Margin="5" Background="#D9D9D9"/>
+                        <DataGrid x:Name="lstskrorost" Height="380" Margin="5" Background="#D9D9D9" 
+                                  AutoGenerateColumns="True"/>
                         <Button x:Name="btnObnovi" Content="Обновить" Margin="5" Width="182" HorizontalAlignment="Left"/>
                     </StackPanel>
 
@@ -49,25 +55,45 @@
                         <Label Content="ID прогноза" FontWeight="Normal" FontSize="14" Margin="0,0,0,-5"/>
                         <TextBox x:Name="txtIDPrognoza" Margin="5,0,5,10" Tag="IDPrognoza" Background="#D9D9D9"/>
 
-                        <StackPanel Orientation="Horizontal" Margin="0,80,0,1" VerticalAlignment="Bottom">
-                            <Button x:Name="BtnAdd" Content="Добавить"
+                        <StackPanel Orientation="Horizontal" Margin="0,81,0,1" VerticalAlignment="Bottom">
+                            <StackPanel Orientation="Horizontal"
+                                        Background="#A3EFA6"
+                                        Margin="10,0,5,10" 
+                                        Width="140">
+                                <Image Source="D:\Users\evgrafova.za2972\Source\Repos\Monitoring-i-prognozirovanie-probok\Мониторинг и прогнозирование пробок\images\add.png" Width="15" Height="15" RenderTransformOrigin="8.622,-1.61"
+                                       />
+                                <Button x:Name="BtnAdd" Content="Добавить"
                                     Background="#A3EFA6"
+                                        BorderBrush="Transparent"
                                     VerticalAlignment="Bottom"
-                                    Foreground="Black" Width="125" Margin="10,0,5,10">
-                            </Button>
-                            <Button x:Name="BtnDelete" Content="Удалить"
-                                    Background="#BD8383"
-                                    VerticalAlignment="Bottom"
-                                    Foreground="Black" Width="125" Margin="25,0,5,10">
-                            </Button>
-                            <Button x:Name="BtnChange" Content="Редактировать"
-                                    Background="#787FCE"
-                                    VerticalAlignment="Bottom"
-                                    Foreground="Black" Width="125" Margin="20,0,5,10">
-                            </Button>
+                                        
+                                    Foreground="Black" Width="100"/>
+                            </StackPanel>
+                            
+                            <StackPanel Orientation="Horizontal"
+                                         Background="#BD8383"
+                                         Margin="10,0,5,10" Width="140">
+                                <Image Source="D:\Users\evgrafova.za2972\Source\Repos\Monitoring-i-prognozirovanie-probok\Мониторинг и прогнозирование пробок\images\trash.png" Width="15" Height="15"/>
+                                <Button x:Name="BtnDelete" Content="Удалить" 
+                                        Background="#BD8383"
+                                        BorderBrush="Transparent"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="Black" Width="100"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal"
+                                        Background="#787FCE"
+                                        Margin="10,0,5,10" Width="140">
+                                <Image Source="D:\Users\evgrafova.za2972\Source\Repos\Monitoring-i-prognozirovanie-probok\Мониторинг и прогнозирование пробок\images\agreement.png" Width="15" Height="15"/>
+                                <Button x:Name="BtnRedact" Content="Редактировать" 
+                                        Background="#787FCE"
+                                        BorderBrush="Transparent"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="Black" Width="100"/>
+                            </StackPanel>
                         </StackPanel>
                     </StackPanel>
-                    
+
                 </Grid>
             </TabItem>
 
@@ -79,7 +105,8 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Grid.Column="0" Margin="5" Background="#EBEBEB">
-                        <ListBox x:Name="Prognozskrorost" Height="380" Margin="5" Background="#D9D9D9"/>
+                        <DataGrid x:Name="Prognozskrorost" Height="380" Margin="5" Background="#D9D9D9"
+                                  AutoGenerateColumns="True"/>
                         <Button x:Name="btnObnov" Content="Обновить" Margin="5" Width="182" HorizontalAlignment="Left"/>
                     </StackPanel>
 
@@ -93,7 +120,7 @@
                         <Label Content="Скорость при прогнозе" FontWeight="Normal" FontSize="14" Margin="0,0,0,-5"/>
                         <TextBox x:Name="txtspeedpriprognoz" Margin="5,0,5,10" Tag="SpeedMedlPotoka" Background="#D9D9D9"/>
 
-                        <StackPanel Orientation="Horizontal" Margin="0,80,0,1" VerticalAlignment="Bottom">
+                        <StackPanel Orientation="Horizontal" Margin="0,185,0,1" VerticalAlignment="Bottom">
                             <Button x:Name="BtnAdd1" Content="Добавить"
                         Background="#A3EFA6"
                         VerticalAlignment="Bottom"
@@ -122,7 +149,8 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Grid.Column="0" Margin="5" Background="#EBEBEB">
-                        <ListBox x:Name="TypeDay" Height="380" Margin="5" Background="#D9D9D9"/>
+                        <DataGrid x:Name="TypeDay" Height="380" Margin="5" Background="#D9D9D9"
+                                  AutoGenerateColumns="True"/>
                         <Button x:Name="btnObnov1" Content="Обновить" Margin="5" Width="182" HorizontalAlignment="Left"/>
                     </StackPanel>
 
@@ -138,7 +166,7 @@
                         <Label Content="ID прогноза" FontWeight="Normal" FontSize="14" Margin="0,0,0,-5"/>
                         <TextBox x:Name="txtIDprognoza" Margin="5,0,5,10" Tag="SpeedMedlPotoka" Background="#D9D9D9"/>
 
-                        <StackPanel Orientation="Horizontal" Margin="0,80,0,1" VerticalAlignment="Bottom">
+                        <StackPanel Orientation="Horizontal" Margin="0,136,0,1" VerticalAlignment="Bottom">
                             <Button x:Name="BtnAdd2" Content="Добавить"
                                     Background="#A3EFA6"
                                     VerticalAlignment="Bottom"
@@ -156,11 +184,8 @@
                             </Button>
                         </StackPanel>
                     </StackPanel>
-
                 </Grid>
             </TabItem>
-
         </TabControl>
-
     </Grid>
 </Window>

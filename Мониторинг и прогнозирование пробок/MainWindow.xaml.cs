@@ -17,17 +17,41 @@ namespace Мониторинг_и_прогнозирование_пробок
     /// </summary>
     public partial class MainWindow : Window
     {
+        private DBContext db;
         public MainWindow()
         {
             InitializeComponent();
 
-            var db = new DBContext();
+            db = new DBContext();
             db.Database.EnsureCreated();
+
+            LoadAllData();
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void LoadAllData()
         {
-
+            LoadHistorySpeeds();
+            LoadPrognozSpeeds();
+            LoadTypeDays();
         }
+
+        private void LoadHistorySpeeds()
+        {
+            lstskrorost.ItemsSource = db.HistorySpeeds.ToList();
+            lstskrorost.DisplayMemberPath = "DataVremya";
+        }
+
+        private void LoadPrognozSpeeds()
+        {
+            Prognozskrorost.ItemsSource = db.PrognozSpeeds.ToList();
+            Prognozskrorost.DisplayMemberPath = "ID";
+        }
+
+        private void LoadTypeDays()
+        {
+            TypeDay.ItemsSource = db.TypeDays.ToList();
+            TypeDay.DisplayMemberPath = "Name";
+        }
+
     }
 }
