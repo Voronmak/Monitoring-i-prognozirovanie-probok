@@ -16,7 +16,7 @@ namespace Мониторинг_и_прогнозирование_пробок.Da
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;DataBase=Monitoring;Trusted_Connection=True;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-5OBV7BT\SQLEXPRESS;DataBase=Monitoring0;Trusted_Connection=True;TrustServerCertificate=True;");
                 
         }
     }

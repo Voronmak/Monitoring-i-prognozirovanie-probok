@@ -60,7 +60,7 @@
                                         Background="#A3EFA6"
                                         Margin="10,0,5,10" 
                                         Width="140">
-                                <Image Source="D:\Users\evgrafova.za2972\Source\Repos\Monitoring-i-prognozirovanie-probok\Мониторинг и прогнозирование пробок\images\add.png" Width="15" Height="15" RenderTransformOrigin="8.622,-1.61"
+                                <Image Source="C:\Users\163149\Source\Repos\Monitoring-i-prognozirovanie-probok\Мониторинг и прогнозирование пробок\images\add.png" Width="15" Height="15" RenderTransformOrigin="8.622,-1.61"
                                        />
                                 <Button x:Name="BtnAdd" Content="Добавить"
                                     Background="#A3EFA6"
@@ -73,7 +73,7 @@
                             <StackPanel Orientation="Horizontal"
                                          Background="#BD8383"
                                          Margin="10,0,5,10" Width="140">
-                                <Image Source="D:\Users\evgrafova.za2972\Source\Repos\Monitoring-i-prognozirovanie-probok\Мониторинг и прогнозирование пробок\images\trash.png" Width="15" Height="15"/>
+                                <Image Source="C:\Users\163149\Source\Repos\Monitoring-i-prognozirovanie-probok\Мониторинг и прогнозирование пробок\images\trash.png" Width="15" Height="15"/>
                                 <Button x:Name="BtnDelete" Content="Удалить" 
                                         Background="#BD8383"
                                         BorderBrush="Transparent"
@@ -84,7 +84,7 @@
                             <StackPanel Orientation="Horizontal"
                                         Background="#787FCE"
                                         Margin="10,0,5,10" Width="140">
-                                <Image Source="D:\Users\evgrafova.za2972\Source\Repos\Monitoring-i-prognozirovanie-probok\Мониторинг и прогнозирование пробок\images\agreement.png" Width="15" Height="15"/>
+                                <Image Source="C:\Users\163149\Source\Repos\Monitoring-i-prognozirovanie-probok\Мониторинг и прогнозирование пробок\images\agreement.png" Width="15" Height="15"/>
                                 <Button x:Name="BtnRedact" Content="Редактировать" 
                                         Background="#787FCE"
                                         BorderBrush="Transparent"
@@ -121,21 +121,39 @@
                         <TextBox x:Name="txtspeedpriprognoz" Margin="5,0,5,10" Tag="SpeedMedlPotoka" Background="#D9D9D9"/>
 
                         <StackPanel Orientation="Horizontal" Margin="0,185,0,1" VerticalAlignment="Bottom">
-                            <Button x:Name="BtnAdd1" Content="Добавить"
-                        Background="#A3EFA6"
-                        VerticalAlignment="Bottom"
-                        Foreground="Black" Width="125" Margin="10,0,5,10">
-                            </Button>
-                            <Button x:Name="BtnDelete1" Content="Удалить"
-                        Background="#BD8383"
-                        VerticalAlignment="Bottom"
-                        Foreground="Black" Width="125" Margin="25,0,5,10">
-                            </Button>
-                            <Button x:Name="BtnChange1" Content="Редактировать"
-                        Background="#787FCE"
-                        VerticalAlignment="Bottom"
-                        Foreground="Black" Width="125" Margin="20,0,5,10">
-                            </Button>
+                            <StackPanel Orientation="Horizontal"
+                                Background="#A3EFA6"
+                                Margin="10,0,5,10" 
+                                Width="140">
+                                <Image Source="C:\Users\163149\Source\Repos\Monitoring-i-prognozirovanie-probok\Мониторинг и прогнозирование пробок\images\add.png" Width="15" Height="15" RenderTransformOrigin="8.622,-1.61"   />
+                                <Button x:Name="BtnAdd1" Content="Добавить"
+                                Background="#A3EFA6"
+                                BorderBrush="Transparent"
+                                VerticalAlignment="Bottom" 
+                                Foreground="Black" Width="100"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal"
+                                Background="#BD8383"
+                                Margin="10,0,5,10" Width="140">
+                                <Image Source="C:\Users\163149\Source\Repos\Monitoring-i-prognozirovanie-probok\Мониторинг и прогнозирование пробок\images\trash.png" Width="15" Height="15"/>
+                                <Button x:Name="BtnDelete1" Content="Удалить" 
+                                Background="#BD8383"
+                                BorderBrush="Transparent"
+                                VerticalAlignment="Bottom"
+                                Foreground="Black" Width="100"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal"
+                                Background="#787FCE"
+                                Margin="10,0,5,10" Width="140">
+                                <Image Source="C:\Users\163149\Source\Repos\Monitoring-i-prognozirovanie-probok\Мониторинг и прогнозирование пробок\images\agreement.png" Width="15" Height="15"/>
+                                <Button x:Name="BtnRedact1" Content="Редактировать" 
+                                Background="#787FCE"
+                                BorderBrush="Transparent"
+                                VerticalAlignment="Bottom"
+                                Foreground="Black" Width="100"/>
+                            </StackPanel>
                         </StackPanel>
                     </StackPanel>
                 </Grid>
@@ -167,21 +185,39 @@
                         <TextBox x:Name="txtIDprognoza" Margin="5,0,5,10" Tag="SpeedMedlPotoka" Background="#D9D9D9"/>
 
                         <StackPanel Orientation="Horizontal" Margin="0,136,0,1" VerticalAlignment="Bottom">
-                            <Button x:Name="BtnAdd2" Content="Добавить"
-                                    Background="#A3EFA6"
-                                    VerticalAlignment="Bottom"
-                                    Foreground="Black" Width="125" Margin="10,0,5,10">
-                            </Button>
-                            <Button x:Name="BtnDelete2" Content="Удалить"
-                                    Background="#BD8383"
-                                    VerticalAlignment="Bottom"
-                                    Foreground="Black" Width="125" Margin="25,0,5,10">
-                            </Button>
-                            <Button x:Name="BtnChange2" Content="Редактировать"
-                                    Background="#787FCE"
-                                    VerticalAlignment="Bottom"
-                                    Foreground="Black" Width="125" Margin="20,0,5,10">
-                            </Button>
+                            <StackPanel Orientation="Horizontal"
+                                        Background="#A3EFA6"
+                                        Margin="10,0,5,10" 
+                                        Width="140">
+                                <Image Source="C:\Users\163149\Source\Repos\Monitoring-i-prognozirovanie-probok\Мониторинг и прогнозирование пробок\images\add.png" Width="15" Height="15" RenderTransformOrigin="8.622,-1.61"   />
+                                <Button x:Name="BtnAdd2" Content="Добавить"
+                                        Background="#A3EFA6"
+                                        BorderBrush="Transparent"
+                                        VerticalAlignment="Bottom" 
+                                        Foreground="Black" Width="100"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal"
+                                        Background="#BD8383"
+                                        Margin="10,0,5,10" Width="140">
+                                <Image Source="C:\Users\163149\Source\Repos\Monitoring-i-prognozirovanie-probok\Мониторинг и прогнозирование пробок\images\trash.png" Width="15" Height="15"/>
+                                <Button x:Name="BtnDelete2" Content="Удалить" 
+                                        Background="#BD8383"
+                                        BorderBrush="Transparent"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="Black" Width="100"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal"
+                                        Background="#787FCE"
+                                        Margin="10,0,5,10" Width="140">
+                                <Image Source="C:\Users\163149\Source\Repos\Monitoring-i-prognozirovanie-probok\Мониторинг и прогнозирование пробок\images\agreement.png" Width="15" Height="15"/>
+                                <Button x:Name="BtnRedact2" Content="Редактировать" 
+                                        Background="#787FCE"
+                                        BorderBrush="Transparent"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="Black" Width="100"/>
+                            </StackPanel>
                         </StackPanel>
                     </StackPanel>
                 </Grid>
