@@ -110,11 +110,11 @@ namespace Мониторинг_и_прогнозирование_пробок
             {
                 error += "Введите скорость медленного потока\n";
             }
-            if(string.IsNullOrEmpty(txtspeedbystrp.Text))
+            if (string.IsNullOrEmpty(txtspeedbystrp.Text))
             {
                 error += "Введите скорость быстрого потока\n";
             }
-            if(string.IsNullOrEmpty(txtIDPrognoza.Text))
+            if (string.IsNullOrEmpty(txtIDPrognoza.Text))
             {
                 error += "Введите ID прогноза\n";
             }
@@ -219,7 +219,7 @@ namespace Мониторинг_и_прогнозирование_пробок
                 LoadAllData();
                 ClearIstSkorost();
             }
-            catch(Exception ex) { MessageBox.Show("Ошибка", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception ex) { MessageBox.Show("Ошибка", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
         #endregion
         #region prognoz
@@ -251,17 +251,17 @@ namespace Мониторинг_и_прогнозирование_пробок
             try
             {
                 var PrognozSkorost = new Прогноз_скорости
-            {
-                ID = Convert.ToInt32(txtIDPr.Text),
-                PrognozaDataVremya = Convert.ToDateTime(txtTime.Text),
-                DataSozdaniaPrognoza = Convert.ToDateTime(txtDataSozd.Text),
-                PrognozSpeed = Convert.ToInt32(txtspeedpriprognoz.Text),
-            };
-            
-            db.PrognozSpeeds.Add(PrognozSkorost);
-            db.SaveChanges();
-            LoadAllData();
-            ClearPrognozSkorost();
+                {
+                    ID = Convert.ToInt32(txtIDPr.Text),
+                    PrognozaDataVremya = Convert.ToDateTime(txtTime.Text),
+                    DataSozdaniaPrognoza = Convert.ToDateTime(txtDataSozd.Text),
+                    PrognozSpeed = Convert.ToInt32(txtspeedpriprognoz.Text),
+                };
+
+                db.PrognozSpeeds.Add(PrognozSkorost);
+                db.SaveChanges();
+                LoadAllData();
+                ClearPrognozSkorost();
 
             }
             catch (Exception ex) { MessageBox.Show("Ошибка", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -369,18 +369,18 @@ namespace Мониторинг_и_прогнозирование_пробок
             try
             {
                 var TypeDay = new Тип_дня
-            {
-                ID = Convert.ToInt32(txtIDType.Text),
-                Name = txtDay.Text,
-                prazdnik = (bool)txtPrazdnik.IsChecked,
-                Nagruzki = Convert.ToInt32(txtNagruzka.Text),
-                IDPrognoz = Convert.ToInt32(txtIDprognoza.Text),
-            };
+                {
+                    ID = Convert.ToInt32(txtIDType.Text),
+                    Name = txtDay.Text,
+                    prazdnik = (bool)txtPrazdnik.IsChecked,
+                    Nagruzki = Convert.ToInt32(txtNagruzka.Text),
+                    IDPrognoz = Convert.ToInt32(txtIDprognoza.Text),
+                };
 
-            db.TypeDays.Add(TypeDay);
-            db.SaveChanges();
-            LoadAllData();
-            ClearTypeDay();
+                db.TypeDays.Add(TypeDay);
+                db.SaveChanges();
+                LoadAllData();
+                ClearTypeDay();
             }
             catch (Exception ex) { MessageBox.Show("Ошибка", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
@@ -492,5 +492,246 @@ namespace Мониторинг_и_прогнозирование_пробок
             txtNagruzka.Text = "";
             txtIDprognoza.Text = "";
         }
+
+        #region Мониторинг пробок
+
+        private void StatistikButton_Click(object sender, RoutedEventArgs e)
+        {
+            ShowAverageSpeedByDay();
+        }
+
+        private void ShowAverageSpeedByDay()
+        {
+            try
+            {
+                var historyData = db.HistorySpeeds.ToList();
+
+                if (!historyData.Any())
+                {
+                    MessageBox.Show("Нет данных в таблице исторической скорости",
+                                  "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+
+                var result = new List<object>();
+
+                string[] days = { "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье" };
+
+                foreach (string day in days)
+                {
+                    int dayNumber = Array.IndexOf(days, day) + 1;
+                    if (dayNumber == 7) dayNumber = 0;
+
+                    var dayData = historyData.Where(h => (int)h.DataVremya.DayOfWeek == dayNumber).ToList();
+
+                    if (dayData.Any())
+                    {
+                        double avgSpeed = (double)dayData.Average(h => h.SrScorost);
+
+                        result.Add(new
+                        {
+                            День_недели = day,
+                            Средняя_скорость = Math.Round(avgSpeed, 1),
+                            Количество_записей = dayData.Count,
+                            Минимальная_скорость = Math.Round((double)dayData.Min(h => h.SrScorost), 1),
+                            Максимальная_скорость = Math.Round((double)dayData.Max(h => h.SrScorost), 1)
+                        });
+                    }
+                }
+
+                Type.ItemsSource = result;
+
+                if (result.Any())
+                {
+                    var bestDay = result.OrderByDescending(x => x.GetType().GetProperty("Средняя_скорость").GetValue(x)).First();
+                    var worstDay = result.OrderBy(x => x.GetType().GetProperty("Средняя_скорость").GetValue(x)).First();
+
+                    MessageBox.Show($"Анализ по дням недели\n\n" +
+                                   $"Самый быстрый день: {bestDay.GetType().GetProperty("День_недели").GetValue(bestDay)} " +
+                                   $"({bestDay.GetType().GetProperty("Средняя_скорость").GetValue(bestDay)} км/ч)\n\n" +
+                                   $"Самый медленный день: {worstDay.GetType().GetProperty("День_недели").GetValue(worstDay)} " +
+                                   $"({worstDay.GetType().GetProperty("Средняя_скорость").GetValue(worstDay)} км/ч)\n\n",
+                                   "Результат анализа", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при анализе: {ex.Message}", "Ошибка",
+                               MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ShowWorstTrafficDays()
+        {
+            try
+            {
+                var historyData = db.HistorySpeeds.ToList();
+
+                if (!historyData.Any())
+                {
+                    MessageBox.Show("Нет данных в таблице исторической скорости",
+                                  "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+
+                var worstDays = historyData
+                    .OrderBy(h => h.SrScorost)
+                    .Take(10)
+                    .Select(h => new
+                    {
+                        Дата = h.DataVremya.ToString("dd.MM.yyyy"),
+                        День_недели = h.DataVremya.DayOfWeek.ToString(),
+                        Средняя_скорость = Math.Round((double)h.SrScorost, 1),
+                        Скорость_медленного = Math.Round((double)h.ScorostMedlPotoka, 1),
+                        Скорость_быстрого = Math.Round((double)h.ScorostBystrPotoka, 1),
+                        Оценка_пробок = GetTrafficRating((double)h.SrScorost)
+                    })
+                    .ToList();
+
+                Type.ItemsSource = worstDays;
+
+                double avgSpeedAll = (double)historyData.Average(h => h.SrScorost);
+                var worstDay = worstDays.First();
+
+                MessageBox.Show($"Топ самых пробочных дней\n\n" +
+                               $"Всего дней: {historyData.Count}\n" +
+                               $"Средняя скорость: {Math.Round(avgSpeedAll, 1)} км/ч\n\n" +
+                               $"Самый пробочный день:\n" +
+                               $" - Дата: {worstDay.GetType().GetProperty("Дата").GetValue(worstDay)}\n" +
+                               $" - День: {worstDay.GetType().GetProperty("День_недели").GetValue(worstDay)}\n" +
+                               $" - Скорость: {worstDay.GetType().GetProperty("Средняя_скорость").GetValue(worstDay)} км/ч\n" +
+                               $" - Оценка: {worstDay.GetType().GetProperty("Оценка_пробок").GetValue(worstDay)}\n\n",
+                               "Анализ пробок", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при анализе: {ex.Message}", "Ошибка",
+                               MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private string GetTrafficRating(double speed)
+        {
+            if (speed < 20) return "Критическая пробка";
+            if (speed < 40) return "Сильная пробка";
+            if (speed < 60) return "Средняя пробка";
+            return "Свободная дорога";
+        }
+
+        private void BtnByDay_Click(object sender, RoutedEventArgs e)
+        {
+            ShowAverageSpeedByDay();
+        }
+
+        private void BtnWorst_Click(object sender, RoutedEventArgs e)
+        {
+            ShowWorstTrafficDays();
+        }
+
+        private void BtnSelectAll_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var result = db.HistorySpeeds.ToList();
+
+                if (!result.Any())
+                {
+                    MessageBox.Show("Нет данных", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+
+                var displayResult = result.Select(h => new
+                {
+                    ID = h.ID,
+                    Дата = h.DataVremya.ToString("dd.MM.yyyy HH:mm"),
+                    Средняя_скорость = h.SrScorost,
+                    ID_прогноза = h.IDPrognoza
+                }).ToList();
+
+                Type.ItemsSource = displayResult;
+
+                MessageBox.Show($"SELECT * FROM HistorySpeeds\n\nНайдено записей: {result.Count}",
+                               "LINQ запрос", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void BtnWhereSpeed_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var result = db.HistorySpeeds.Where(h => h.SrScorost > 50).ToList();
+
+                var displayResult = result.Select(h => new
+                {
+                    ID = h.ID,
+                    Дата = h.DataVremya.ToString("dd.MM.yyyy HH:mm"),
+                    Средняя_скорость = h.SrScorost
+                }).ToList();
+
+                Type.ItemsSource = displayResult;
+
+                MessageBox.Show($"WHERE SrScorost > 50\n\nНайдено записей: {result.Count}",
+                               "LINQ запрос", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void BtnOrderBySpeed_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var result = db.HistorySpeeds.OrderBy(h => h.SrScorost).ToList();
+
+                var displayResult = result.Select(h => new
+                {
+                    ID = h.ID,
+                    Дата = h.DataVremya.ToString("dd.MM.yyyy HH:mm"),
+                    Средняя_скорость = h.SrScorost
+                }).ToList();
+
+                Type.ItemsSource = displayResult;
+
+                MessageBox.Show($"ORDER BY SrScorost ASC\n\nОтсортировано от медленных к быстрым",
+                               "LINQ запрос", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void BtnOrderBySpeedDesc_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var result = db.HistorySpeeds.OrderByDescending(h => h.SrScorost).ToList();
+
+                var displayResult = result.Select(h => new
+                {
+                    ID = h.ID,
+                    Дата = h.DataVremya.ToString("dd.MM.yyyy HH:mm"),
+                    Средняя_скорость = h.SrScorost
+                }).ToList();
+
+                Type.ItemsSource = displayResult;
+
+                MessageBox.Show($"ORDER BY SrScorost DESC\n\nОтсортировано от быстрых к медленным",
+                               "LINQ запрос", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
     }
 }
+
+#endregion
+

@@ -195,6 +195,62 @@
                     </StackPanel>
                 </Grid>
             </TabItem>
+
+            <TabItem Header="Мониторинг пробок" Background="#8B2C2C">
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Background="#EBEBEB" Margin="5" Padding="10" CornerRadius="5">
+                        <StackPanel>
+                            <WrapPanel Margin="0,0,0,10">
+                                <Button x:Name="BtnByDay" Content="Средняя скорость по дням недели"
+                            Width="220" Height="25" Margin="0,0,10,0"
+                            Background="#8B2C2C" Foreground="White"
+                            Click="BtnByDay_Click"/>
+
+                                <Button x:Name="BtnWorst" Content="Топ пробочных дней"
+                            Width="150" Height="25" Margin="0,0,10,0"
+                            Background="#8B2C2C" Foreground="White"
+                            Click="BtnWorst_Click"/>
+
+                                <Button x:Name="StatistikButton" Content="Обновить"
+                            Width="100" Height="25"
+                            Background="#8B2C2C" Foreground="White"
+                            Click="StatistikButton_Click"/>
+                            </WrapPanel>
+
+                            <WrapPanel>
+                                <Button x:Name="BtnSelectAll" Content="SELECT * (все данные)"
+                            Width="180" Height="25" Margin="0,0,10,0"
+                            Background="#8B2C2C" Foreground="White"
+                            Click="BtnSelectAll_Click"/>
+
+                                <Button x:Name="BtnWhereSpeed" Content="WHERE (скорость > 50)"
+                            Width="180" Height="25" Margin="-5,0,10,0"
+                            Background="#8B2C2C"  Foreground="White"
+                            Click="BtnWhereSpeed_Click"/>
+
+                                <Button x:Name="BtnOrderBySpeed" Content="ORDER BY (скорость от низкого к высокому)"
+                            Width="250" Height="25" Margin="-5,0,10,0"
+                            Background="#8B2C2C" Foreground="White"
+                            Click="BtnOrderBySpeed_Click"/>
+
+                                <Button x:Name="BtnOrderBySpeedDesc" Content="ORDER BY (скорость от высокого к низкому)"
+                            Width="250" Height="25" Margin="-5,0,10,0"
+                            Background="#8B2C2C" Foreground="White"
+                            Click="BtnOrderBySpeedDesc_Click"/>
+                            </WrapPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <DataGrid Grid.Row="1" x:Name="Type" Margin="5" 
+                  Background="#D9D9D9" AutoGenerateColumns="True"
+                  CanUserAddRows="False" IsReadOnly="True"/>
+                </Grid>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>
