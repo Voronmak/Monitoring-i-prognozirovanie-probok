@@ -37,8 +37,8 @@
 
                     <StackPanel Grid.Column="0" Margin="5" Background="#EBEBEB">
                         <DataGrid x:Name="lstskrorost" Height="380" Margin="5" Background="#D9D9D9" 
-                                  AutoGenerateColumns="True"/>
-                        <Button x:Name="btnObnovi" Content="Обновить" Margin="5" Width="182" HorizontalAlignment="Left"/>
+                                  AutoGenerateColumns="True" SelectionChanged="Lstskrorost_SelectionChanged"/>
+                        <Button x:Name="btnObnovi" Content="Обновить" Margin="5" Width="182" HorizontalAlignment="Left" Click="btnObnovi_Click"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" Margin="5"  Background="#EBEBEB">
@@ -59,37 +59,28 @@
                             <StackPanel Orientation="Horizontal"
                                         Background="#A3EFA6"
                                         Margin="10,0,5,10" 
-                                        Width="140">
+                                        Width="140" 
+                                        MouseLeftButtonDown="IstSkorostAdd_MouseLeftButtonDown">
                                 <Image Source="C:\Users\163149\Source\Repos\Monitoring-i-prognozirovanie-probok\Мониторинг и прогнозирование пробок\images\add.png" Width="15" Height="15" RenderTransformOrigin="8.622,-1.61"
                                        />
-                                <Button x:Name="BtnAdd" Content="Добавить"
-                                    Background="#A3EFA6"
-                                        BorderBrush="Transparent"
-                                    VerticalAlignment="Bottom"
-                                        
-                                    Foreground="Black" Width="100"/>
+                                <Label Content="Добавить"
+                                         Margin="20,-3,0,-3"/>
                             </StackPanel>
-                            
-                            <StackPanel Orientation="Horizontal"
+
+                            <StackPanel Orientation="Horizontal" MouseLeftButtonDown="IstSkorostDel_MouseLeftButtonDown"
                                          Background="#BD8383"
                                          Margin="10,0,5,10" Width="140">
                                 <Image Source="C:\Users\163149\Source\Repos\Monitoring-i-prognozirovanie-probok\Мониторинг и прогнозирование пробок\images\trash.png" Width="15" Height="15"/>
-                                <Button x:Name="BtnDelete" Content="Удалить" 
-                                        Background="#BD8383"
-                                        BorderBrush="Transparent"
-                                        VerticalAlignment="Bottom"
-                                        Foreground="Black" Width="100"/>
+                                <Label Content="Удалить"
+                                        Margin="28,-3,0,-3"/>
                             </StackPanel>
 
-                            <StackPanel Orientation="Horizontal"
+                            <StackPanel Orientation="Horizontal" MouseLeftButtonDown="IstSkorostEdit_MouseLeftButtonDown"
                                         Background="#787FCE"
                                         Margin="10,0,5,10" Width="140">
                                 <Image Source="C:\Users\163149\Source\Repos\Monitoring-i-prognozirovanie-probok\Мониторинг и прогнозирование пробок\images\agreement.png" Width="15" Height="15"/>
-                                <Button x:Name="BtnRedact" Content="Редактировать" 
-                                        Background="#787FCE"
-                                        BorderBrush="Transparent"
-                                        VerticalAlignment="Bottom"
-                                        Foreground="Black" Width="100"/>
+                                <Label Content="Редактировать"
+                                        Margin="10,-3,0,-3"/>
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>
@@ -106,8 +97,8 @@
 
                     <StackPanel Grid.Column="0" Margin="5" Background="#EBEBEB">
                         <DataGrid x:Name="Prognozskrorost" Height="380" Margin="5" Background="#D9D9D9"
-                                  AutoGenerateColumns="True"/>
-                        <Button x:Name="btnObnov" Content="Обновить" Margin="5" Width="182" HorizontalAlignment="Left"/>
+                                  AutoGenerateColumns="True" SelectionChanged="Prognozskrorost_SelectionChanged"/>
+                        <Button x:Name="btnObnov" Content="Обновить" Margin="5" Width="182" HorizontalAlignment="Left" Click="btnObnovi_Click"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" Margin="5"  Background="#EBEBEB">
@@ -124,35 +115,26 @@
                             <StackPanel Orientation="Horizontal"
                                 Background="#A3EFA6"
                                 Margin="10,0,5,10" 
-                                Width="140">
+                                Width="140" MouseLeftButtonDown="PrognozSkorostAdd_MouseLeftButtonDown">
                                 <Image Source="C:\Users\163149\Source\Repos\Monitoring-i-prognozirovanie-probok\Мониторинг и прогнозирование пробок\images\add.png" Width="15" Height="15" RenderTransformOrigin="8.622,-1.61"   />
-                                <Button x:Name="BtnAdd1" Content="Добавить"
-                                Background="#A3EFA6"
-                                BorderBrush="Transparent"
-                                VerticalAlignment="Bottom" 
-                                Foreground="Black" Width="100"/>
+                                <Label Content="Добавить"
+                                    Margin="20,-3,0,-3"/>
                             </StackPanel>
 
-                            <StackPanel Orientation="Horizontal"
+                            <StackPanel Orientation="Horizontal" MouseLeftButtonDown="IstSkorostDel_MouseLeftButtonDown"
                                 Background="#BD8383"
                                 Margin="10,0,5,10" Width="140">
                                 <Image Source="C:\Users\163149\Source\Repos\Monitoring-i-prognozirovanie-probok\Мониторинг и прогнозирование пробок\images\trash.png" Width="15" Height="15"/>
-                                <Button x:Name="BtnDelete1" Content="Удалить" 
-                                Background="#BD8383"
-                                BorderBrush="Transparent"
-                                VerticalAlignment="Bottom"
-                                Foreground="Black" Width="100"/>
+                                <Label Content="Удалить"
+                                     Margin="28,-3,0,-3"/>
                             </StackPanel>
 
-                            <StackPanel Orientation="Horizontal"
+                            <StackPanel Orientation="Horizontal" MouseLeftButtonDown="PrognozSkorostEdit_MouseLeftButtonDown"
                                 Background="#787FCE"
                                 Margin="10,0,5,10" Width="140">
                                 <Image Source="C:\Users\163149\Source\Repos\Monitoring-i-prognozirovanie-probok\Мониторинг и прогнозирование пробок\images\agreement.png" Width="15" Height="15"/>
-                                <Button x:Name="BtnRedact1" Content="Редактировать" 
-                                Background="#787FCE"
-                                BorderBrush="Transparent"
-                                VerticalAlignment="Bottom"
-                                Foreground="Black" Width="100"/>
+                                <Label Content="Редактировать"
+                                     Margin="10,-3,0,-3"/>
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>
@@ -168,8 +150,8 @@
 
                     <StackPanel Grid.Column="0" Margin="5" Background="#EBEBEB">
                         <DataGrid x:Name="TypeDay" Height="380" Margin="5" Background="#D9D9D9"
-                                  AutoGenerateColumns="True"/>
-                        <Button x:Name="btnObnov1" Content="Обновить" Margin="5" Width="182" HorizontalAlignment="Left"/>
+                                  AutoGenerateColumns="True" SelectionChanged="TypeDay_SelectionChanged"/>
+                        <Button x:Name="btnObnov1" Content="Обновить" Margin="5" Width="182" HorizontalAlignment="Left" Click="btnObnovi_Click"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" Margin="5"  Background="#EBEBEB">
@@ -188,35 +170,26 @@
                             <StackPanel Orientation="Horizontal"
                                         Background="#A3EFA6"
                                         Margin="10,0,5,10" 
-                                        Width="140">
+                                        Width="140" MouseLeftButtonDown="TypeDayAdd_MouseLeftButtonDown">
                                 <Image Source="C:\Users\163149\Source\Repos\Monitoring-i-prognozirovanie-probok\Мониторинг и прогнозирование пробок\images\add.png" Width="15" Height="15" RenderTransformOrigin="8.622,-1.61"   />
-                                <Button x:Name="BtnAdd2" Content="Добавить"
-                                        Background="#A3EFA6"
-                                        BorderBrush="Transparent"
-                                        VerticalAlignment="Bottom" 
-                                        Foreground="Black" Width="100"/>
+                                <Label Content="Добавить"
+                                        Margin="20,-3,0,-3"/>
                             </StackPanel>
 
-                            <StackPanel Orientation="Horizontal"
+                            <StackPanel Orientation="Horizontal" MouseLeftButtonDown="TypeDayDel_MouseLeftButtonDown"
                                         Background="#BD8383"
                                         Margin="10,0,5,10" Width="140">
                                 <Image Source="C:\Users\163149\Source\Repos\Monitoring-i-prognozirovanie-probok\Мониторинг и прогнозирование пробок\images\trash.png" Width="15" Height="15"/>
-                                <Button x:Name="BtnDelete2" Content="Удалить" 
-                                        Background="#BD8383"
-                                        BorderBrush="Transparent"
-                                        VerticalAlignment="Bottom"
-                                        Foreground="Black" Width="100"/>
+                                <Label Content="Удалить"
+                                        Margin="28,-3,0,-3"/>
                             </StackPanel>
 
-                            <StackPanel Orientation="Horizontal"
+                            <StackPanel Orientation="Horizontal" MouseLeftButtonDown="TypeDayEdit_MouseLeftButtonDown"
                                         Background="#787FCE"
                                         Margin="10,0,5,10" Width="140">
                                 <Image Source="C:\Users\163149\Source\Repos\Monitoring-i-prognozirovanie-probok\Мониторинг и прогнозирование пробок\images\agreement.png" Width="15" Height="15"/>
-                                <Button x:Name="BtnRedact2" Content="Редактировать" 
-                                        Background="#787FCE"
-                                        BorderBrush="Transparent"
-                                        VerticalAlignment="Bottom"
-                                        Foreground="Black" Width="100"/>
+                                <Label Content="Редактировать"
+                                        Margin="10,-3,0,-3"/>
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>
