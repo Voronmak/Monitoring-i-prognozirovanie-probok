@@ -13,10 +13,11 @@ namespace Мониторинг_и_прогнозирование_пробок.Da
         public DbSet<Тип_дня> TypeDays { get; set; }
         public DbSet<Историческая_скорость> HistorySpeeds { get; set; }
         public DbSet<Прогноз_скорости> PrognozSpeeds { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-5OBV7BT\SQLEXPRESS;DataBase=Monitoring1;Trusted_Connection=True;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-5OBV7BT\SQLEXPRESS;DataBase=Monitoring11;Trusted_Connection=True;TrustServerCertificate=True;");
                 
         }
     }

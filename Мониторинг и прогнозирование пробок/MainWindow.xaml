@@ -27,8 +27,8 @@
                    Margin="0,-10,10,0"/>
         </StackPanel>
 
-        <TabControl Grid.Row="1">
-            <TabItem Header="Историческая скорость"  Background="#8B2C2C">
+        <TabControl Grid.Row="1" Name="TabControlMain">
+            <TabItem Header="Историческая скорость"  Background="#8B2C2C" Height="22" Margin="-2,-0,-2,0" VerticalAlignment="Top" Name="TabItemHist">
                 <Grid Margin ="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -88,7 +88,7 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Прогноз скорости"  Background="#8B2C2C">
+            <TabItem Header="Прогноз скорости"  Background="#8B2C2C" Name="TabItemPrognoz">
                 <Grid Margin ="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -116,7 +116,7 @@
                                 Background="#A3EFA6"
                                 Margin="10,0,5,10" 
                                 Width="140" MouseLeftButtonDown="PrognozSkorostAdd_MouseLeftButtonDown">
-                                <Image Source="C:\Users\163149\Source\Repos\Monitoring-i-prognozirovanie-probok\Мониторинг и прогнозирование пробок\images\add.png" Width="15" Height="15" RenderTransformOrigin="8.622,-1.61"   />
+                                <Image Source="C:\Users\163149\Source\Repos\Monitoring-i-prognozirovanie-probok\Мониторинг и прогнозирование пробок\images\add.png" Width="15" Height="15" RenderTransformOrigin="8.622,-1.61"/>
                                 <Label Content="Добавить"
                                     Margin="20,-3,0,-3"/>
                             </StackPanel>
@@ -141,7 +141,7 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Тип дня" Background="#8B2C2C">
+            <TabItem Header="Тип дня" Background="#8B2C2C" Name="TabItemType">
                 <Grid Margin ="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -196,7 +196,7 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Мониторинг пробок" Background="#8B2C2C">
+            <TabItem Header="Мониторинг пробок" Background="#8B2C2C" Name="TabItemMonitoring">
                 <Grid Margin="5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>

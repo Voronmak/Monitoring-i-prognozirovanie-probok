@@ -20,13 +20,21 @@ namespace Мониторинг_и_прогнозирование_пробок
     public partial class MainWindow : Window
     {
         private DBContext db;
-        public MainWindow()
+        public MainWindow(string Login)
         {
             InitializeComponent();
 
             db = new DBContext();
             db.Database.EnsureCreated();
 
+            if(Login == "user")
+            {
+                TabControlMain.SelectedItem = TabItemMonitoring;
+
+                TabItemHist.Visibility = Visibility.Collapsed;
+                TabItemPrognoz.Visibility = Visibility.Collapsed;
+                TabItemType.Visibility = Visibility.Collapsed;
+            }
             LoadAllData();
         }
 
