@@ -37,7 +37,33 @@
 
                     <StackPanel Grid.Column="0" Margin="5" Background="#EBEBEB">
                         <DataGrid x:Name="lstskrorost" Height="380" Margin="5" Background="#D9D9D9" 
-                                  AutoGenerateColumns="True" SelectionChanged="Lstskrorost_SelectionChanged"/>
+                                  AutoGenerateColumns="False" SelectionChanged="Lstskrorost_SelectionChanged">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" 
+                                 Binding="{Binding ID}" 
+                                 Width="30"/>
+
+                                <DataGridTextColumn Header="Дата и время" 
+                                 Binding="{Binding DataVremya, StringFormat='dd.MM.yyyy HH:mm'}" 
+                                 Width="90"/>
+
+                                <DataGridTextColumn Header="Средняя скорость" 
+                                 Binding="{Binding SrScorost}" 
+                                 Width="120"/>
+
+                                <DataGridTextColumn Header="Скорость медленного потока" 
+                                 Binding="{Binding ScorostMedlPotoka}" 
+                                 Width="120"/>
+
+                                <DataGridTextColumn Header="Скорость быстрого потока" 
+                                 Binding="{Binding ScorostBystrPotoka}" 
+                                 Width="120"/>
+                                
+                                <DataGridTextColumn Header="ID Прогноза" 
+                                 Binding="{Binding IDPrognoza}" 
+                                 Width="100"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
                         <Button x:Name="btnObnovi" Content="Обновить" Margin="5" Width="182" HorizontalAlignment="Left" Click="btnObnovi_Click"/>
                     </StackPanel>
 
@@ -97,7 +123,27 @@
 
                     <StackPanel Grid.Column="0" Margin="5" Background="#EBEBEB">
                         <DataGrid x:Name="Prognozskrorost" Height="380" Margin="5" Background="#D9D9D9"
-                                  AutoGenerateColumns="True" SelectionChanged="Prognozskrorost_SelectionChanged"/>
+                                  AutoGenerateColumns="False" SelectionChanged="Prognozskrorost_SelectionChanged">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" 
+                                  Binding="{Binding ID}" 
+                                  Width="30"/>
+
+                                <DataGridTextColumn Header="Прогноз на дату и время" 
+                                  Binding="{Binding PrognozaDataVremya, StringFormat='dd.MM.yyyy HH:mm'}" 
+                                  Width="150"/>
+
+                                <DataGridTextColumn Header="Дата создания прогноза" 
+                                  Binding="{Binding DataSozdaniaPrognoza, StringFormat='dd.MM.yyyy HH:mm'}" 
+                                  Width="120"/>
+
+                                <DataGridTextColumn Header="Прогнозируемая скорость" 
+                                  Binding="{Binding PrognozSpeed}" 
+                                  Width="120"/>
+
+
+                            </DataGrid.Columns>
+                        </DataGrid>
                         <Button x:Name="btnObnov" Content="Обновить" Margin="5" Width="182" HorizontalAlignment="Left" Click="btnObnovi_Click"/>
                     </StackPanel>
 
@@ -150,7 +196,28 @@
 
                     <StackPanel Grid.Column="0" Margin="5" Background="#EBEBEB">
                         <DataGrid x:Name="TypeDay" Height="380" Margin="5" Background="#D9D9D9"
-                                  AutoGenerateColumns="True" SelectionChanged="TypeDay_SelectionChanged"/>
+                                  AutoGenerateColumns="False" SelectionChanged="TypeDay_SelectionChanged">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" 
+                                  Binding="{Binding ID}" 
+                                  Width="30"/>
+
+                                <DataGridTextColumn Header="Название типа" 
+                                  Binding="{Binding Name}" 
+                                  Width="90"/>
+
+                                <DataGridCheckBoxColumn Header="Является праздником" 
+                                  Binding="{Binding prazdnik, StringFormat='dd.MM.yyyy HH:mm'}" 
+                                  Width="130"/>
+
+                                <DataGridTextColumn Header="Коэфициент нагрузки" 
+                                  Binding="{Binding Nagruzki}" 
+                                  Width="130"/>
+                                <DataGridTextColumn Header="ID Прогноза" 
+                                  Binding="{Binding IDPrognoz}" 
+                                  Width="130"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
                         <Button x:Name="btnObnov1" Content="Обновить" Margin="5" Width="182" HorizontalAlignment="Left" Click="btnObnovi_Click"/>
                     </StackPanel>
 
