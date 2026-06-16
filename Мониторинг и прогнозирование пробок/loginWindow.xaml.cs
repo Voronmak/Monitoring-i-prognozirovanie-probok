@@ -25,7 +25,7 @@ namespace Мониторинг_и_прогнозирование_пробок
         public loginWindow()
         {
             InitializeComponent();
-
+            db.Database.EnsureCreated();
             if (!db.Users.Any())
             {
                 db.Users.Add(new Models.User
