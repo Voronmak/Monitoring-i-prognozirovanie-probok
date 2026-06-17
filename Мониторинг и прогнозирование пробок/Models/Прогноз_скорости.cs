@@ -15,6 +15,6 @@ namespace Мониторинг_и_прогнозирование_пробок.Mo
         public DateTime DataSozdaniaPrognoza { get; set; }
         public int PrognozSpeed { get; set; }
 
-        
+   
     }
 }
